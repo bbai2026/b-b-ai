@@ -1,6 +1,6 @@
 ```html
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,59 +10,287 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 50% 20%, #252044 0%, #11111b 35%, #08080d 75%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .background-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(130, 100, 255, 0.12);
+            filter: blur(120px);
+            top: -180px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        header {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            padding: 24px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        .telegram {
+            color: #b8b8c8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .telegram:hover {
+            color: #ffffff;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+
+            min-height: calc(100vh - 80px);
+
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-family: Arial, sans-serif;
-
-            background: #0b0b12;
-            color: #ffffff;
+            padding: 60px 20px;
         }
 
-        .container {
+        .hero {
+            width: 100%;
+            max-width: 900px;
             text-align: center;
-            padding: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+            margin-bottom: 25px;
+
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            color: #c8bfff;
+            font-size: 13px;
         }
 
         h1 {
-            margin: 0 0 15px;
-            font-size: 52px;
+            font-size: clamp(55px, 10vw, 105px);
+            line-height: 0.95;
+            letter-spacing: -5px;
+            margin-bottom: 28px;
         }
 
-        .telegram {
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #c4b5fd,
+                #8b7cf6
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            max-width: 650px;
+            margin: 0 auto 40px;
+
+            color: #a9a9b8;
             font-size: 18px;
-            color: #b8a7ff;
+            line-height: 1.7;
         }
 
-        .telegram a {
-            color: #b8a7ff;
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 190px;
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+            font-weight: 600;
+
             text-decoration: none;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
         }
 
-        .telegram a:hover {
-            text-decoration: underline;
+        .primary {
+            background: #ffffff;
+            color: #0b0b12;
+        }
+
+        .primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.12);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+        }
+
+        .secondary:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .bottom-text {
+            margin-top: 70px;
+
+            color: #666675;
+            font-size: 13px;
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+            padding: 25px;
+
+            color: #555562;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+
+            .telegram {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .button {
+                width: 100%;
+                max-width: 320px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <main class="container">
-        <h1>B&B AI</h1>
+    <div class="background-glow"></div>
 
-        <div class="telegram">
-            Telegram:
-            <a href="https://t.me/barad_bolhasani" target="_blank">
-                @barad_bolhasani
-            </a>
+    <header>
+        <div class="logo">
+            B&B <span>AI</span>
         </div>
+
+        <a
+            class="telegram"
+            href="https://t.me/barad_bolhasani"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Telegram: @barad_bolhasani
+        </a>
+    </header>
+
+    <main>
+        <section class="hero">
+
+            <div class="badge">
+                Artificial Intelligence Platform
+            </div>
+
+            <h1>
+                <span>B&B AI</span>
+            </h1>
+
+            <p class="description">
+                An intelligent platform for conversation, creation,
+                and exploring new ideas.
+            </p>
+
+            <div class="actions">
+
+                <!-- This will connect to the main B&B AI UI later -->
+                <a href="#" class="button primary">
+                    Enter B&B AI
+                </a>
+
+                <a
+                    href="https://t.me/barad_bolhasani"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button secondary"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+            <div class="bottom-text">
+                Built by B&B Studio
+            </div>
+
+        </section>
     </main>
+
+    <footer>
+        © 2026 B&B AI
+    </footer>
 
 </body>
 </html>
