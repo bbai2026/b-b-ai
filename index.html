@@ -1,177 +1,755 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B&B AI - Home</title>
+
+    <meta name="description"
+          content="B&B AI is an artificial intelligence platform developed by B&B Studio.">
+
+    <title>B&B AI — Artificial Intelligence Platform</title>
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #08080d;
+            --bg-soft: #0d0d15;
+            --card: rgba(255, 255, 255, 0.045);
+            --border: rgba(190, 160, 255, 0.16);
+            --text: #f5f2ff;
+            --muted: #aaa5bb;
+            --purple: #9d7cff;
+            --purple-light: #c7b5ff;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #08080f;
-            color: white;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(125, 83, 255, 0.13), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(157, 124, 255, 0.09), transparent 28%),
+                var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
         nav {
-            height: 75px;
-            padding: 0 6%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+
+            height: 72px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #20202b;
+
+            padding: 0 7%;
+
+            background: rgba(8, 8, 13, 0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         .logo span {
-            color: #9b7cff;
+            color: var(--purple);
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
             align-items: center;
+            gap: 28px;
         }
 
         .nav-links a {
-            color: #aaaab8;
-            text-decoration: none;
+            color: var(--muted);
             font-size: 14px;
+            transition: 0.25s ease;
         }
 
         .nav-links a:hover {
-            color: white;
+            color: var(--text);
         }
 
-        .enter {
-            background: white;
-            color: #08080f !important;
-            padding: 11px 18px;
-            border-radius: 10px;
-            font-weight: bold;
+        .nav-enter {
+            padding: 10px 17px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text) !important;
+            background: rgba(157, 124, 255, 0.08);
         }
+
+        .nav-enter:hover {
+            background: rgba(157, 124, 255, 0.16);
+            border-color: rgba(157, 124, 255, 0.35);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
-            min-height: calc(100vh - 75px);
+            min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            padding: 130px 7% 90px;
+
             text-align: center;
-            padding: 30px;
         }
 
         .hero-content {
-            max-width: 850px;
+            max-width: 900px;
         }
 
-        .badge {
-            color: #bdaeff;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 8px 14px;
             margin-bottom: 25px;
-            font-size: 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            background: rgba(157, 124, 255, 0.06);
+
+            color: var(--purple-light);
+            font-size: 13px;
         }
 
-        h1 {
-            font-size: clamp(60px, 10vw, 110px);
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+            letter-spacing: -3px;
             margin-bottom: 25px;
-            letter-spacing: -5px;
         }
 
-        h1 span {
-            background: linear-gradient(90deg, white, #a78bfa);
-            -webkit-background-clip: text;
-            color: transparent;
+        .hero h1 span {
+            color: var(--purple);
         }
 
-        .description {
-            color: #9999a8;
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 34px;
+
+            color: var(--muted);
             font-size: 18px;
-            line-height: 1.7;
-            max-width: 650px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 150px;
+            padding: 13px 21px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .button-primary {
+            background: var(--purple);
+            color: #0b0812;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(157, 124, 255, 0.25);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.035);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255,255,255,0.07);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-container {
+            max-width: 1100px;
             margin: auto;
         }
 
-        .main-button {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 17px 32px;
-            background: white;
-            color: #08080f;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: bold;
-            transition: .2s;
+        .section-label {
+            color: var(--purple);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
         }
 
-        .main-button:hover {
-            transform: translateY(-3px);
+        .section-title {
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.15;
+            margin-bottom: 20px;
         }
+
+        .section-description {
+            max-width: 750px;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* =========================
+           WHAT IS B&B AI
+        ========================= */
+
+        .about-section {
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-top: 45px;
+        }
+
+        .glass-card {
+            padding: 30px;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .glass-card h3 {
+            font-size: 21px;
+            margin-bottom: 13px;
+        }
+
+        .glass-card p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* =========================
+           VISION
+        ========================= */
+
+        .vision-section {
+            background: rgba(255,255,255,0.012);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .vision-box {
+            margin-top: 42px;
+
+            padding: 42px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(157,124,255,0.11),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid var(--border);
+        }
+
+        .vision-box p {
+            color: #cbc6d7;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        /* =========================
+           B&B STUDIO
+        ========================= */
+
+        .studio-section {
+            text-align: center;
+        }
+
+        .studio-section .section-description {
+            margin: auto;
+        }
+
+        .studio-card {
+            max-width: 760px;
+            margin: 40px auto 0;
+            padding: 35px;
+
+            border-radius: 23px;
+            border: 1px solid var(--border);
+
+            background: rgba(157,124,255,0.055);
+        }
+
+        .studio-card h3 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .studio-card h3 span {
+            color: var(--purple);
+        }
+
+        .studio-card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta-section {
+            padding-top: 70px;
+            padding-bottom: 110px;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 60px 30px;
+
+            border-radius: 28px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(157,124,255,0.13),
+                    transparent 65%
+                );
+
+            border: 1px solid var(--border);
+        }
+
+        .cta h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            max-width: 620px;
+            margin: 0 auto 28px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            text-align: center;
-            padding: 25px;
-            color: #555562;
-            font-size: 12px;
+            padding: 30px 7%;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+
+            color: #777284;
+            font-size: 13px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .footer-brand span {
+            color: var(--purple);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:not(.nav-enter) {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-box {
+                padding: 28px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html" class="logo">
-        B&B <span>AI</span>
-    </a>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="login_sigup.html" class="enter">
-            Enter B&B AI
+    <nav>
+        <a href="index.html" class="logo">
+            B&B <span>AI</span>
         </a>
-    </div>
-</nav>
 
-<section class="hero">
-    <div class="hero-content">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="login_sigup.html" class="nav-enter">
+                Enter B&B AI
+            </a>
+        </div>
+    </nav>
 
-        <div class="badge">
-            Artificial Intelligence Platform
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    AI Platform by B&B Studio
+                </div>
+
+                <h1>
+                    B&B <span>AI</span>
+                </h1>
+
+                <p>
+                    An artificial intelligence platform developed by
+                    B&B Studio — built to bring different AI capabilities
+                    together in one environment.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="login_sigup.html"
+                        class="button button-primary"
+                    >
+                        Enter B&B AI
+                    </a>
+
+                    <a
+                        href="#what-is-bb-ai"
+                        class="button button-secondary"
+                    >
+                        Discover B&B AI
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WHAT IS B&B AI
+        ========================= -->
+
+        <section class="about-section" id="what-is-bb-ai">
+
+            <div class="section-container">
+
+                <div class="section-label">
+                    What is B&B AI?
+                </div>
+
+                <h2 class="section-title">
+                    One platform. A growing AI ecosystem.
+                </h2>
+
+                <p class="section-description">
+                    B&B AI is an AI platform developed by B&B Studio.
+                    Its purpose is to create a unified environment where
+                    different artificial intelligence capabilities can
+                    eventually work together.
+                </p>
+
+
+                <div class="about-grid">
+
+                    <div class="glass-card">
+
+                        <h3>
+                            Built as a platform
+                        </h3>
+
+                        <p>
+                            B&B AI is not designed to be only a single
+                            AI tool. The project is being developed as
+                            a platform that can grow over time and
+                            include multiple AI experiences.
+                        </p>
+
+                    </div>
+
+
+                    <div class="glass-card">
+
+                        <h3>
+                            Designed to evolve
+                        </h3>
+
+                        <p>
+                            The platform is currently under development.
+                            New capabilities and services will be added
+                            gradually as the B&B AI ecosystem grows.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VISION
+        ========================= -->
+
+        <section class="vision-section">
+
+            <div class="section-container">
+
+                <div class="section-label">
+                    Our Vision
+                </div>
+
+                <h2 class="section-title">
+                    From a project to a complete AI platform.
+                </h2>
+
+                <p class="section-description">
+                    B&B AI is being developed step by step, with the
+                    long-term goal of becoming a complete environment
+                    for working with artificial intelligence.
+                </p>
+
+
+                <div class="vision-box">
+
+                    <p>
+                        The future of B&B AI is focused on bringing
+                        different AI capabilities into one connected
+                        platform. From intelligent conversations to
+                        creative AI tools and other technologies,
+                        B&B AI will continue to evolve as the project
+                        grows.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             B&B STUDIO
+        ========================= -->
+
+        <section class="studio-section">
+
+            <div class="section-container">
+
+                <div class="section-label">
+                    Developed by
+                </div>
+
+                <h2 class="section-title">
+                    B&B Studio
+                </h2>
+
+                <p class="section-description">
+                    B&B AI is a project developed under B&B Studio,
+                    with the vision of turning ideas into real,
+                    useful technologies.
+                </p>
+
+
+                <div class="studio-card">
+
+                    <h3>
+                        <span>B&B Studio</span>
+                        — We Make Ideas Real.
+                    </h3>
+
+                    <p>
+                        B&B Studio is the organization behind B&B AI
+                        and its future development. The studio focuses
+                        on building creative technology projects and
+                        turning ideas into real experiences.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================= -->
+
+        <section class="cta-section">
+
+            <div class="section-container">
+
+                <div class="cta">
+
+                    <h2>
+                        Ready to explore B&B AI?
+                    </h2>
+
+                    <p>
+                        Enter B&B AI and follow the development of
+                        the platform as it grows into a broader
+                        artificial intelligence ecosystem.
+                    </p>
+
+                    <a
+                        href="login_sigup.html"
+                        class="button button-primary"
+                    >
+                        Enter B&B AI
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                © 2026
+                <span class="footer-brand">
+                    B&B <span>AI</span>
+                </span>
+                — Developed by B&B Studio
+            </div>
+
+            <div>
+                Artificial Intelligence Platform
+            </div>
+
         </div>
 
-        <h1>
-            <span>B&B AI</span>
-        </h1>
-
-        <p class="description">
-            An intelligent AI platform for conversation,
-            creativity, and turning ideas into reality.
-        </p>
-
-        <a href="login_sigup.html" class="main-button">
-            Enter B&B AI →
-        </a>
-
-    </div>
-</section>
-
-<footer>
-    © 2026 B&B AI — B&B Studio
-</footer>
+    </footer>
 
 </body>
 </html>
-```
